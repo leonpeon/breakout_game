@@ -1,4 +1,5 @@
 from turtle import Turtle
+import time
 
 class Ball(Turtle):
     def __init__(self):
@@ -10,6 +11,8 @@ class Ball(Turtle):
         self.goto(0, -178)
         self.setheading(45)
         self.move_speed = 10
+        self.game_lose = False
+        self.game_win = False
 
     def move(self, paddle, wall, score):
         self.forward(self.move_speed)
@@ -37,3 +40,21 @@ class Ball(Turtle):
         if self.ycor() <= paddle.ycor() + 20 and abs(self.xcor() - paddle.xcor()) < 60 and self.heading() > 180:
             self.sety(paddle.ycor() + 25)
             self.setheading(360 - self.heading())
+
+        # When player misses the ball
+        if self.ycor() < -230:
+            self.ball_reset(paddle, score)
+
+        # If player wins
+        if not wall.bricks:
+            self.game_win = True
+
+    def ball_reset(self, paddle, score):
+        if not score.lose_life():
+            self.game_over = True
+        self.goto(0, -178)
+        paddle.goto(0, -200)
+        self.setheading(45)
+        self.move_speed = 10
+        time.sleep(1)
+        

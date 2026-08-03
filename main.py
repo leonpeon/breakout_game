@@ -52,10 +52,25 @@ def game_loop():
         paddle.move_left()
     if right_pressed:
         paddle.move_right()
+
+    if ball.game_win or ball.game_lose:
+        if ball.game_win:
+            winner = True
+        else:
+            winner = False
+        game_over(winner)
+
     screen.update()
     screen.ontimer(game_loop, 16)
 
     ball.move(paddle=paddle, wall=bricks, score=score)
+
+def game_over(winner):
+    if winner:
+        print("YOU WON")
+    else:
+        print("YOU LOST")
+
 
 game_loop()
 
