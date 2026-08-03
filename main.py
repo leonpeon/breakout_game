@@ -9,6 +9,7 @@ from turtle import Turtle
 from paddle import Paddle
 from bricks import Wall
 from ball import Ball
+from score import Score
 
 t = Turtle()
 t.hideturtle()
@@ -20,6 +21,7 @@ screen.tracer(0)
 paddle = Paddle()
 bricks = Wall()
 ball = Ball()
+score = Score()
 
 # Tracks if the user is pressing the left or right buttons
 left_pressed = False
@@ -53,7 +55,7 @@ def game_loop():
     screen.update()
     screen.ontimer(game_loop, 16)
 
-    ball.move(paddle=paddle, wall=bricks)
+    ball.move(paddle=paddle, wall=bricks, score=score)
 
 game_loop()
 

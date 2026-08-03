@@ -11,7 +11,7 @@ class Ball(Turtle):
         self.setheading(45)
         self.move_speed = 10
 
-    def move(self, paddle, wall):
+    def move(self, paddle, wall, score):
         self.forward(self.move_speed)
 
         # When it hits the wall
@@ -28,6 +28,8 @@ class Ball(Turtle):
             if self.distance(brick) <= 25:
                 self.setheading(360 - self.heading())
                 wall.bricks.remove(brick)
+                score.add_score()
+                self.move_speed += 0.2
                 brick.hideturtle()
                 break
 
