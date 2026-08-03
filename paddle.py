@@ -8,6 +8,7 @@ class Paddle(Turtle):
         self.color("purple")
         self.shapesize(1, 5)
         self.goto(0, -200)
+        self.speed("fastest")
         self.move_units = 10
 
     def move_left(self):
