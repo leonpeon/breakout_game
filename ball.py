@@ -50,8 +50,8 @@ class Ball(Turtle):
             self.game_win = True
 
     def ball_reset(self, paddle, score):
-        if not score.lose_life():
-            self.game_over = True
+        if score.lose_life():
+            self.game_lose = True
         self.goto(0, -178)
         paddle.goto(0, -200)
         self.setheading(45)

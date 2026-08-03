@@ -13,6 +13,7 @@ from score import Score
 
 t = Turtle()
 t.hideturtle()
+t.penup()
 
 screen = t.screen
 screen.title("Breakout")
@@ -59,6 +60,7 @@ def game_loop():
         else:
             winner = False
         game_over(winner)
+        return
 
     screen.update()
     screen.ontimer(game_loop, 16)
@@ -66,11 +68,13 @@ def game_loop():
     ball.move(paddle=paddle, wall=bricks, score=score)
 
 def game_over(winner):
+    t.goto(0, -30)
     if winner:
-        print("YOU WON")
+        t.color("green")
+        t.write("YOU WON!", font=("Impact", 50, "bold"), align="center")
     else:
-        print("YOU LOST")
-
+        t.color("red")
+        t.write("YOU LOST", font=("Impact", 50, "bold"), align="center")
 
 game_loop()
 
