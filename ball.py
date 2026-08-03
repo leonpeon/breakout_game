@@ -38,9 +38,15 @@ class Ball(Turtle):
                 break
 
         # Calculate direction and angle of ball when it the paddle
-        if self.ycor() <= paddle.ycor() + 20 and abs(self.xcor() - paddle.xcor()) < 60 and self.heading() > 180:
+        if (self.ycor() <= paddle.ycor() + 20 
+            and abs(self.xcor() - paddle.xcor()) < 60 
+            and self.heading() > 180
+            and self.heading() < 360):
             self.sety(paddle.ycor() + 25)
-            self.setheading(360 - self.heading())
+
+            offset = self.xcor() - paddle.xcor()
+            bounce_angle = 90 + offset * 0.8
+            self.setheading(bounce_angle)
 
         # When player misses the ball
         if self.ycor() < -230:
