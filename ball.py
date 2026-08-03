@@ -1,4 +1,5 @@
 from turtle import Turtle
+from random import randint
 import time
 
 class Ball(Turtle):
@@ -9,7 +10,7 @@ class Ball(Turtle):
         self.color("black", "#D3D3D3")
         self.speed("fastest")
         self.goto(0, -178)
-        self.setheading(45)
+        self.setheading(randint(60, 170))
         self.move_speed = 10
         self.game_lose = False
         self.game_win = False
@@ -54,7 +55,7 @@ class Ball(Turtle):
             self.game_lose = True
         self.goto(0, -178)
         paddle.goto(0, -200)
-        self.setheading(45)
+        self.setheading(randint(60, 170))
         self.move_speed = 10
         time.sleep(1)
         
