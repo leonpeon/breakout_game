@@ -33,7 +33,7 @@ class Ball(Turtle):
                 self.setheading(360 - self.heading())
                 wall.bricks.remove(brick)
                 score.add_score()
-                self.move_speed += 0.2
+                self.move_speed += 0.15
                 brick.hideturtle()
                 break
 
@@ -47,6 +47,10 @@ class Ball(Turtle):
             offset = self.xcor() - paddle.xcor()
             bounce_angle = 90 + offset * 0.8
             self.setheading(bounce_angle)
+
+        # When player hits the ceiling
+        if self.ycor() > 250:
+            self.setheading(360 - self.heading())
 
         # When player misses the ball
         if self.ycor() < -230:
