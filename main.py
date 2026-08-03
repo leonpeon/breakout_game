@@ -5,12 +5,53 @@
 # Bricks: disappear once the ball touches it
 # Score: +1 for every brick
 
-import turtle
+from turtle import Turtle
+from paddle import Paddle
 
-t = turtle.Turtle()
+t = Turtle()
+t.hideturtle()
+
 screen = t.screen
-screen.setup(600, 400)
+screen.setup(width=800, height=500)
+screen.tracer(0)
+paddle = Paddle()
 
+left_pressed = False
+right_pressed = False
 
+def press_left():
+    global left_pressed
+    left_pressed = True
+
+def release_left():
+    global left_pressed
+    left_pressed = False
+
+def press_right():
+    global right_pressed
+    right_pressed = True
+
+def release_right():
+    global right_pressed
+    right_pressed = False
+
+screen.listen()
+
+screen.onkeypress(press_left, "Left")
+screen.onkeyrelease(release_left, "Left")
+screen.onkeypress(press_right, "Right")
+screen.onkeyrelease(release_right, "Right")
+
+# Updates the screen every 16 ms
+def game_loop():
+    if left_pressed:
+        paddle.move_left()
+
+    if right_pressed:
+        paddle.move_right()
+
+    screen.update()
+    screen.ontimer(game_loop, 16)
+game_loop()
 
 screen.exitonclick()
