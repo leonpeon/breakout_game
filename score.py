@@ -8,7 +8,7 @@ class Score(Turtle):
         self.goto(-135, 240)
         self.score = 0
         self.lives = 3
-        self.write(f"Score: {self.score}           Lives: {self.lives}", font=("Consolas", 14, "normal"))
+        self.update_info()
 
     def update_info(self):
         self.clear()
